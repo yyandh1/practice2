@@ -1,7 +1,4 @@
-﻿// the generic Euclid algorithm
-// 2nd task 
-
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 using namespace std;
 
