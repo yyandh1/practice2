@@ -84,6 +84,20 @@ pair<int, int> remainder(int& basis, int& power, int& modP) {
     return ost;  //вернем пару значений
 }
 
+void sravn(int basis, int power, int modP){
+
+    int basis2 = 0, power2 = 0;
+    cout << "Введите основание второго числа, которое будете сравнивать по модулю: ";
+    cin >> basis2;
+    cout << "Введите степень числа второго числа, которое будете сравнивать по модулю: ";
+    cin >> power2;
+
+    if (modexp(basis, power, modP) >= modexp(basis2, power2, modP)){
+        cout << basis << "^" << power << " больше " << basis2 << "^" << power2<< " по модулю "<< modP;
+    } else{
+        cout << basis << "^" << power << " меньше " << basis2 << "^" << power2<< " по модулю "<< modP;
+    }
+}
 int main() {
     setlocale(LC_ALL, "RUS");
     int basis = 0, power = 0, modP = 0;
@@ -98,6 +112,7 @@ int main() {
         cout << "Согласно теореме Ферма получим: " << basis << "^" << power << " mod " << modP << " = 1" << endl;
         pair<int, int> ost = remainder(basis, power, modP);  //рассматриваем остатки через функцию
         cout << "Проверим, используя логарифм: " << ost.second << endl;
+        sravn(basis, power, modP);
         return 0;
     }
     if (NOD(basis, modP) == 1) { // если числа взаимнопростые, можем воспользоваться теореой Эйлера
@@ -105,6 +120,7 @@ int main() {
             cout << "Согласно теореме Эйлера получим: " << basis << "^" << power << " mod " << modP << " = 1" << endl;
             pair<int, int> ost = remainder(basis, power, modP);  //рассматриваем остатки через функцию
             cout << "Проверим, используя логарифм: " << ost.second << endl;
+            sravn(basis, power, modP);
             return 0;
         }
         else {
@@ -112,9 +128,11 @@ int main() {
             int result = modexp(basis, power, modP);
             pair<int, int> ost = remainder(basis, power, modP);  //рассматриваем остатки через функцию
             cout << "Результат, используя свойства сравнений = " << ost.first << " и результат, используя логарифм = " << ost.second << endl;
+            sravn(basis, power, modP);
             return 0;
         }
     }
     cout << "Число делится без остатка ";
+    sravn(basis, power, modP);
     return 0;
 }
